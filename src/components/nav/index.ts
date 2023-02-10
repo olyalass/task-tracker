@@ -1,14 +1,22 @@
 import "./styles.scss";
 
 export class Nav {
-  navContainer: HTMLDivElement;
+  container: HTMLDivElement;
+  buttonsContainer: HTMLDivElement;
   buttonAll: HTMLButtonElement;
   buttonToDo: HTMLButtonElement;
   buttonDone: HTMLButtonElement;
+  buttonRevert: HTMLButtonElement;
 
   constructor () {
-    this.navContainer = document.createElement('div');
-    this.navContainer.classList.add('nav__container');
+    this.container = document.createElement('div');
+    this.container.classList.add('nav');
+    this.buttonsContainer = document.createElement('div');
+    this.buttonsContainer.classList.add('nav__container');
+    this.buttonRevert = document.createElement('button');
+    this.buttonRevert.classList.add('nav__revert');
+    this.container.append(this.buttonsContainer, this.buttonRevert);
+
     this.buttonAll = document.createElement('button');
     this.buttonAll.classList.add('nav__button');
     this.buttonAll.textContent = "All";
@@ -18,6 +26,6 @@ export class Nav {
     this.buttonDone = document.createElement('button');
     this.buttonDone.classList.add('nav__button');
     this.buttonDone.textContent = "Done";
-    this.navContainer.append(this.buttonAll, this.buttonToDo, this.buttonDone);
+    this.buttonsContainer.append(this.buttonAll, this.buttonToDo, this.buttonDone);
   }
 }
