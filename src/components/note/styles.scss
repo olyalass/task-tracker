@@ -1,0 +1,58 @@
+@import "../../mixins.scss";
+
+$note-button-color: rgb(221, 255, 221);
+$note-button-hover-color: rgb(210, 220, 252);
+
+.note {
+  @include space-between-flex();
+  width: 83%;
+  @include soft-black-border();
+  margin: 10px auto;
+  padding: 15px;
+
+  &__text {
+    font-size: 21px;
+    margin: 10px 0 15px;
+  }
+
+  &__container_buttons {
+    @include space-between-flex();
+    width: 162px;
+  }
+
+  &__button{
+    background-color: $note-button-color;
+
+    &:hover {
+      background-color: $note-button-hover-color;
+    }
+
+    &:disabled {
+      background-color: rgb(233, 233, 233);
+      color: rgb(181, 181, 181);
+      cursor: not-allowed;
+
+      &:hover {
+        box-shadow: 5px 5px black;
+      }
+    }
+  }
+
+  &__status {
+    margin-bottom: 0;
+
+    &_active {
+      color:rgb(115, 185, 115)
+    }
+
+    &_done {
+      color: grey;
+    }
+  }
+
+  &__date {
+    width: 140px;
+    margin-bottom: 0;
+    margin-top: 15px;
+  }
+}

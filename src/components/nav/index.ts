@@ -14,8 +14,13 @@ export class Nav {
     this.buttonsContainer = document.createElement('div');
     this.buttonsContainer.classList.add('nav__container');
     this.buttonRevert = document.createElement('button');
-    this.buttonRevert.classList.add('nav__revert');
+    this.buttonRevert.classList.add('nav__button');
     this.container.append(this.buttonsContainer, this.buttonRevert);
+
+    const buttonImg = document.createElement('div');
+    buttonImg.classList.add('nav__revert');
+    this.buttonRevert.appendChild(buttonImg);
+    
 
     this.buttonAll = document.createElement('button');
     this.buttonAll.classList.add('nav__button');

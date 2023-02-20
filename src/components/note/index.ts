@@ -14,7 +14,8 @@ export class Note {
     rightContainer.classList.add("note__container_inner");
     this.container.append(leftContainer, rightContainer);
 
-    const note = document.createElement("p");
+    const note = document.createElement("h2");
+    note.classList.add("note__text");
     note.textContent = text;
     const buttonsContainer = document.createElement("div");
     buttonsContainer.classList.add("note__container_buttons");
@@ -31,7 +32,13 @@ export class Note {
     const statusElem = document.createElement("p");
     statusElem.classList.add("note__status");
     statusElem.textContent = status;
-    status === "Active" ? statusElem.classList.add("note__status_active") : statusElem.classList.add("note__status_done");
+    if (status === "Active") {
+      statusElem.classList.add("note__status_active")
+    }  else {
+      statusElem.classList.add("note__status_done");
+      this.buttonDone.setAttribute("disabled", "true");
+      this.buttonDelete.setAttribute("disabled", "true");
+    };
 
     const dateElem = document.createElement("p");
     dateElem.classList.add("note__date");
@@ -49,7 +56,8 @@ function getPrettyDate (date: Date) {
   const month: string = monthsArr[date.getMonth()];
   const year: number = date.getFullYear();
   const hours = date.getHours();
-  const mins = date.getMinutes();
+  let mins = date.getMinutes().toString();
+  if (mins[1] === "undefined") mins = "0" + mins;
   return `${day}   ${dateNum} ${month} ${year}   ${hours}:${mins}`;
 
 }

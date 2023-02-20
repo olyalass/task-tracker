@@ -1,0 +1,40 @@
+@import "../../mixins.scss";
+
+$warning-backgroun-color: rgb(255, 252, 240);
+
+.warning {
+  display: none;
+  position: absolute;
+  top: 300px;
+  margin: auto;
+  @include soft-black-border();
+  box-shadow: 12px 12px rgba(0, 0, 0, 0.3);
+  background-color: $warning-backgroun-color;
+  width: fit-content;
+  height: fit-content;
+  padding: 35px 45px 20px 45px;
+
+  &_visible {
+    display: block;
+  }
+
+  &__button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: peachpuff;
+    background-image: url(../../../assets/close.svg);
+    @include no-repeat-button-background();
+    width: 30px;
+    height: 20px;
+    margin-bottom: 15px;
+    
+    &:hover {
+      background-color: rgb(255, 203, 158);
+    }
+  }
+
+  &__text {
+    text-align: center;
+  }
+}
