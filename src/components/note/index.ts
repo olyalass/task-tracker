@@ -51,6 +51,7 @@ export class Note {
 }
 
 function getPrettyDate (date: Date) {
+  console.log(date)
   const daysArr = ["Sun", "Mon", "Tue", "Wen", "Thu", "Fri", "Sat"];
   const monthsArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const day: string = daysArr[date.getDay()];

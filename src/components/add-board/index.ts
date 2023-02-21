@@ -33,7 +33,7 @@ export class AddBoard {
     this.buttonAdd.addEventListener("click", (e) => {
       e.preventDefault();
       if (this.checkNoteDuples(dataArray, warningAlert.container)===false) {
-
+        this.addNewNote(dataArray);
       }
     })
   }
@@ -67,5 +67,13 @@ export class AddBoard {
     } else return false;
   }
 
-//   private addNewNote(dataArray: Array<DataArray>, )
+   private addNewNote(dataArray: Array<DataArray>) {
+    const newNote = {
+      note: this.noteText,
+      status: "Active",
+      date: new Date()
+    }
+    dataArray.push(newNote);
+    localStorage.setItem("notes", JSON.stringify(dataArray));
+   }
 }
