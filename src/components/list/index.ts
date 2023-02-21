@@ -1,8 +1,53 @@
 import "./styles.scss";
 import { Nav } from "../nav";
-import { Note } from "components/note";
+import { Note } from "../note";
+import { DataArray } from "../../types";
 
 export class List {
   container: HTMLDivElement;
-  navigation: Nav;
+  notesArr: Array<DataArray>;
+  note: Note;
+
+  constructor() {
+    this.container = document.createElement("div");
+    this.container.classList.add("list");
+
+    const date1 = new Date;
+    date1.setMonth(0, 1);
+
+    const date2 = new Date;
+    date2.setMonth(0, 10);
+
+    this.notesArr = [
+      {
+        note: "Create new tasks",
+        status:"Active", 
+        date: date2
+      }, 
+
+      {
+        note: "Create to-do list app",
+        status: "Done",
+        date: date1
+      }, 
+
+      {
+        note: "Relax",
+        status: "Active",
+        date: date1
+      }
+    ];
+
+    // this.notesArr.sort
+
+    this.renderNotes();
+  }
+
+  private renderNotes() {
+    this.notesArr.forEach(e => {
+      const note = new Note(e.note, e.date, e.status);
+      this.container.appendChild(note.container);
+      console.log("note done")
+    })
+  }
 }

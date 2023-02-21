@@ -1,16 +1,19 @@
 import "./styles.scss";
- 
+
 export class Warning {
   container: HTMLDivElement;
   button: HTMLButtonElement;
 
-  constructor() {
+  constructor(addButton: HTMLButtonElement) {
     this.container = document.createElement("div");
     this.container.classList.add("warning");
 
     this.button = document.createElement("button");
     this.button.classList.add("warning__button");
-    this.button.addEventListener("click", () => this.container.classList.remove("warning__visible"));
+    this.button.addEventListener("click", () => {
+      this.container.classList.remove("warning_visible");
+      addButton.removeAttribute("disabled");
+    });
 
     const warningText1 = document.createElement("p");
     warningText1.classList.add("warning__text");

@@ -1,5 +1,6 @@
 import "./styles.scss";
-import { DataArray } from "../../types"
+import { DataArray } from "../../types";
+import { Warning } from "../warning";
 
 export class AddBoard {
   container: HTMLDivElement;
@@ -7,7 +8,7 @@ export class AddBoard {
   noteText: string;
   counterValue: number;
 
-  constructor() {
+  constructor(dataArray: Array<DataArray>) {
     this.container = document.createElement("div");
     this.container.classList.add("board");
     const input = document.createElement("input");
@@ -24,14 +25,20 @@ export class AddBoard {
     const lengthWarning = document.createElement("p");
     lengthWarning.classList.add("board__counter_error", "board__warning");
     lengthWarning.textContent = "Note should contain from 6 to 55 symbols";
+    const warningAlert = new Warning(this.buttonAdd);
     
-    this.container.append(input, counter, lengthWarning, this.buttonAdd);
+    this.container.append(input, counter, lengthWarning, this.buttonAdd, warningAlert.container);
 
     input.addEventListener("input", () => this.countAndUpgradeInput(input, counter, lengthWarning));
+    this.buttonAdd.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (this.checkNoteDuples(dataArray, warningAlert.container)===false) {
 
+      }
+    })
   }
 
-  private countAndUpgradeInput(inputElem:HTMLInputElement, warnElem1: HTMLParagraphElement, warmElem2:HTMLParagraphElement) {
+  private countAndUpgradeInput(inputElem:HTMLInputElement, warnElem1: HTMLParagraphElement, warmElem2:HTMLParagraphElement): void {
     if (inputElem.value==="") {
       this.counterValue = 0;
       this.noteText = "";
@@ -51,10 +58,14 @@ export class AddBoard {
     warnElem1.textContent = `${this.counterValue}/55`;
   }
 
-  private checkNoteDuples(dataArray: DataArray) {
+  private checkNoteDuples(dataArray: Array<DataArray>, warnAlertElem: HTMLDivElement): boolean {
     let noteStatus = dataArray.find(dataArray => dataArray.note === this.noteText).status;
     if (noteStatus === "Active") {
-
-    }
+      warnAlertElem.classList.add("warning_visible");
+      this.buttonAdd.setAttribute("disabled", "true");
+      return true;
+    } else return false;
   }
+
+//   private addNewNote(dataArray: Array<DataArray>, )
 }

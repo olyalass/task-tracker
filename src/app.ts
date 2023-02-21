@@ -3,6 +3,7 @@ import { Nav } from "./components/nav";
 import { Note } from "./components/note";
 import { AddBoard } from "./components/add-board";
 import { Warning } from "./components/warning";
+import { List } from "./components/list";
 
 const appRoot = document.querySelector(".app");
 const appTitle = document.createElement("h1");
@@ -12,12 +13,7 @@ container.classList.add("app__container");
 appRoot.append(appTitle, container);
 appTitle.textContent = "To-do List";
 const Navigation = new Nav();
-const Board = new AddBoard();
+const list = new List();
+const Board = new AddBoard(list.notesArr);
 
-const now = new Date;
-const note = new Note("Create new tasks", now, "Active");
-const note2 = new Note("Create to-do list app", now, "Done");
-
-const warning = new Warning();
-
-container.append(Navigation.container, note.container, note2.container, Board.container, warning.container);
+container.append(Navigation.container, list.container, Board.container);

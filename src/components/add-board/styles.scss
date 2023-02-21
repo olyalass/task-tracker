@@ -31,6 +31,16 @@
     &:hover {
       background-color: peachpuff;
     }
+
+    &:disabled {
+      background-color: rgb(233, 233, 233);
+      color: rgb(181, 181, 181);
+      cursor: not-allowed;
+
+      &:hover {
+        box-shadow: 5px 5px black;
+      }
+    }
   }
 
   &__counter {

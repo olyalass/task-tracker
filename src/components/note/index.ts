@@ -4,6 +4,7 @@ export class Note {
   container: HTMLDivElement;
   buttonDelete: HTMLButtonElement;
   buttonDone: HTMLButtonElement;
+  noteText: string;
 
   constructor(text: string, date: Date, status: string) {
     this.container = document.createElement("div");
@@ -17,6 +18,7 @@ export class Note {
     const note = document.createElement("h2");
     note.classList.add("note__text");
     note.textContent = text;
+    this.noteText = text;
     const buttonsContainer = document.createElement("div");
     buttonsContainer.classList.add("note__container_buttons");
     leftContainer.append(note, buttonsContainer);
