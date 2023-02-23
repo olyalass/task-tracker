@@ -17,7 +17,7 @@ $nav-button-color: rgb(250, 196, 205);
     min-width: 45px;
     background-color: $nav-button-color;
 
-    &:hover {
+    &:hover, &_selected {
       background-color: $nav-button-hover-color;
     }
   }

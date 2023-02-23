@@ -7,4 +7,6 @@ export type DataObj =
     date: Date
   }
 
-export type SubmitHandler = (note: DataObj) => void
+export type SubmitHandler = (note: DataObj) => void;
+
+export type FilterChangeHandler = (statusFilter: string, isReversed: boolean) => void;

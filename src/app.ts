@@ -51,7 +51,9 @@ export class App {
     this.list = new List();
     const form = new Form();
     const bindedMethod = this.handleNoteSubmit.bind(this);
-    form.onFormSubmit(bindedMethod)
+    form.onFormSubmit(bindedMethod);
+    navigation.onFilterChange(this.handleFilterChange.bind(this));
+
 
     container.append(navigation.container, this.list.container, form.container);
 
@@ -60,6 +62,10 @@ export class App {
   handleNoteSubmit(noteData: DataObj) {
     const newNote = new Note(noteData.note, noteData.date, noteData.status);
     this.list.addNote(newNote);
+  }
+
+  handleFilterChange(statusFilter: string, isReversed: boolean) {
+    this.list.renderNotes(statusFilter, isReversed);
   }
 }
 
