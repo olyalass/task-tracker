@@ -1,11 +1,10 @@
-type Status = "Active" | "Done"
+export type Filter = "Active" | "Done" | "All";
 
-export type DataObj =
-  {
-    note: string,
-    status: string,
-    date: Date
-  }
+export type DataObj = {
+  note: string,
+  status: string,
+  date: Date
+};
 
 export type SubmitHandler = (note: DataObj) => void;
 

@@ -1,5 +1,5 @@
 import "./styles.scss";
-import { DataObj } from "../../types";
+import { DataObj, Filter } from "../../types";
 
 export class Note {
   container: HTMLDivElement;
@@ -7,6 +7,7 @@ export class Note {
   buttonDone: HTMLButtonElement;
   noteText: string;
   statusElem: HTMLParagraphElement;
+  filter: Filter = "All";
 
   constructor(text: string, date: Date, status: string) {
     this.container = document.createElement("div");
