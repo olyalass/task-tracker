@@ -22,9 +22,11 @@ export class App {
 
     const date1 = new Date();
     date1.setMonth(0, 1);
+    date1.setHours(11, 20);
 
     const date2 = new Date();
     date2.setMonth(0, 10);
+    date2.setHours(15, 5);
 
     const notesArr: Array<DataObj> = [
       {
@@ -40,7 +42,7 @@ export class App {
       }
     ];
 
-    if (localStorage.getItem("notes") === undefined) {
+    if (localStorage.getItem("notes") == undefined) {
       const notesJson = JSON.stringify(notesArr);
       localStorage.setItem("notes", notesJson);
     }

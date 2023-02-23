@@ -1,4 +1,5 @@
 import "./styles.scss";
+import { DataObj } from "../../types";
 
 export class Note {
   container: HTMLDivElement;
@@ -26,9 +27,12 @@ export class Note {
     this.buttonDelete = document.createElement("button");
     this.buttonDelete.classList.add("note__button");
     this.buttonDelete.textContent = "Delete";
+    this.buttonDelete.addEventListener("click", () => this.deleteNote());
+
     this.buttonDone = document.createElement("button");
     this.buttonDone.classList.add("note__button");
     this.buttonDone.textContent = "Done";
+
     buttonsContainer.append(this.buttonDone, this.buttonDelete);
 
     const statusElem = document.createElement("p");
@@ -48,10 +52,18 @@ export class Note {
 
     rightContainer.append(statusElem, dateElem);
   }
+
+  private deleteNote() {
+    const notesArr: Array<DataObj> = JSON.parse(localStorage.getItem("notes"));
+    const noteIndex = notesArr.findIndex(e => e.note === this.noteText);
+    notesArr.splice(noteIndex, 1);
+    const JsonArr = JSON.stringify(notesArr);
+    localStorage.setItem("notes", JsonArr);
+    this.container.remove();
+  }
 }
 
 function getPrettyDate (date: Date) {
-  console.log(date)
   const daysArr = ["Sun", "Mon", "Tue", "Wen", "Thu", "Fri", "Sat"];
   const monthsArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const day: string = daysArr[date.getDay()];
@@ -60,7 +72,7 @@ function getPrettyDate (date: Date) {
   const year: number = date.getFullYear();
   const hours = date.getHours();
   let mins = date.getMinutes().toString();
-  if (mins[1] === "undefined") mins = "0" + mins;
+  if (mins.length<2) mins = "0" + mins;
   return `${day}   ${dateNum} ${month} ${year}   ${hours}:${mins}`;
 
 }
