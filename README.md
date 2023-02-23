@@ -1,4 +1,4 @@
-Classic To-do-list App, which lets user to create tasks, mark them as done or delete them. 
+Classic To-do-list App, which lets user create tasks, mark them as done and delete them. 
 The SPA made with TypeScript and SCSS, no frameworks used. 
 - Created tasks are saved in Localstorage
 - Tasks save the time of adding
