@@ -3,7 +3,7 @@ import { Nav } from "./components/nav";
 import { Note } from "./components/note";
 import { Form } from "./components/form";
 import { List } from "./components/list";
-import { DataObj } from "./types";
+import { DataObj, Filter } from "./types";
 
 export class App {
   appRoot: HTMLDivElement;
@@ -17,6 +17,7 @@ export class App {
     appTitle.classList.add("app__title");
     const container = document.createElement("div");
     container.classList.add("app__container");
+
     this.appRoot.append(appTitle, container);
     appTitle.textContent = "To-do List";
 
@@ -54,7 +55,6 @@ export class App {
     form.onFormSubmit(bindedMethod);
     navigation.onFilterChange(this.handleFilterChange.bind(this));
 
-
     container.append(navigation.container, this.list.container, form.container);
 
   }
@@ -64,8 +64,9 @@ export class App {
     this.list.addNote(newNote);
   }
 
-  handleFilterChange(statusFilter: string, isReversed: boolean) {
+  handleFilterChange(statusFilter: Filter, isReversed: boolean) {
     this.list.renderNotes(statusFilter, isReversed);
+    this.list.isReversed = isReversed;
   }
 }
 

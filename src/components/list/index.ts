@@ -5,6 +5,7 @@ import { DataObj } from "../../types";
 export class List {
   container: HTMLDivElement;
   notesArr: Array<DataObj>;
+  isReversed: boolean = false;
 
   constructor() {
     this.container = document.createElement("div");
@@ -42,7 +43,7 @@ export class List {
   }
 
   public addNote(note: Note) {
-    this.container.appendChild(note.container);
+    this.isReversed === true ? this.container.appendChild(note.container) : this.container.prepend(note.container);
   }
 
 }

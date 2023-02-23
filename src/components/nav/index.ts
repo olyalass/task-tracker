@@ -1,5 +1,5 @@
 import "./styles.scss";
-import { FilterChangeHandler } from "../../types";
+import { FilterChangeHandler, Filter } from "../../types";
 
 export class Nav {
   container: HTMLDivElement;
@@ -8,7 +8,7 @@ export class Nav {
   buttonToDo: HTMLButtonElement;
   buttonDone: HTMLButtonElement;
   buttonReverse: HTMLButtonElement;
-  filter: "All" | "Active" | "Done" = "All";
+  filter: Filter = "All";
   isReversed: boolean = false;
   handler: FilterChangeHandler | null = null;
   selectedButton: HTMLButtonElement;
@@ -54,7 +54,7 @@ export class Nav {
     this.handler = handler;
   }
 
-  setFilterOnClick(button: HTMLButtonElement, name: "All" | "Done" | "Active") {
+  setFilterOnClick(button: HTMLButtonElement, name: Filter) {
     button.addEventListener("click", () => {
       this.selectedButton.classList.remove("nav__button_selected")
       this.filter = name;
