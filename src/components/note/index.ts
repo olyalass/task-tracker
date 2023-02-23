@@ -6,6 +6,7 @@ export class Note {
   buttonDelete: HTMLButtonElement;
   buttonDone: HTMLButtonElement;
   noteText: string;
+  statusElem: HTMLParagraphElement;
 
   constructor(text: string, date: Date, status: string) {
     this.container = document.createElement("div");
@@ -32,16 +33,17 @@ export class Note {
     this.buttonDone = document.createElement("button");
     this.buttonDone.classList.add("note__button");
     this.buttonDone.textContent = "Done";
+    this.buttonDone.addEventListener("click", () => this.markNoteAsDone());
 
     buttonsContainer.append(this.buttonDone, this.buttonDelete);
 
-    const statusElem = document.createElement("p");
-    statusElem.classList.add("note__status");
-    statusElem.textContent = status;
+    this.statusElem = document.createElement("p");
+    this.statusElem.classList.add("note__status");
+    this.statusElem.textContent = status;
     if (status === "Active") {
-      statusElem.classList.add("note__status_active")
+      this.statusElem.classList.add("note__status_active")
     }  else {
-      statusElem.classList.add("note__status_done");
+      this.statusElem.classList.add("note__status_done");
       this.buttonDone.setAttribute("disabled", "true");
       this.buttonDelete.setAttribute("disabled", "true");
     };
@@ -50,7 +52,7 @@ export class Note {
     dateElem.classList.add("note__date");
     dateElem.textContent = getPrettyDate(date);
 
-    rightContainer.append(statusElem, dateElem);
+    rightContainer.append(this.statusElem, dateElem);
   }
 
   private deleteNote() {
@@ -60,6 +62,18 @@ export class Note {
     const JsonArr = JSON.stringify(notesArr);
     localStorage.setItem("notes", JsonArr);
     this.container.remove();
+  }
+
+  private markNoteAsDone() {
+    const notesArr: Array<DataObj> = JSON.parse(localStorage.getItem("notes"));
+    notesArr.find(e => e.note === this.noteText).status = "Done";
+    this.statusElem.classList.remove("note__status_active");
+    this.statusElem.classList.add("note__status_done");
+    this.buttonDone.setAttribute("disabled", "true");
+    this.buttonDelete.setAttribute("disabled", "true");
+    this.statusElem.textContent = "Done";
+    const JsonArr = JSON.stringify(notesArr);
+    localStorage.setItem("notes", JsonArr);
   }
 }
 
