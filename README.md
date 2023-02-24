@@ -6,4 +6,4 @@ The SPA made with TypeScript and SCSS, no frameworks used.
 - Tasks are sorted by date, the order can be reverted
 - New tasks are verified for number of symbols
 
-https://olyalass.github.io/To-do-list
+https://olyalass.github.io/To-do-list/build
