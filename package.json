@@ -4,7 +4,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "webpack": "webpack",
-    "dev": "webpack serve"
+    "dev": "webpack serve --mode development --config ./webpack/base.webpack.js",
+    "build": "webpack --mode production --config ./webpack/build.webpack.js"
   },
   "devDependencies": {
     "css-loader": "^6.7.3",
@@ -19,7 +20,5 @@
   "dependencies": {
     "normalize.css": "^8.0.1",
     "webpack-dev-server": "^4.11.1"
-  },
-  "start": "webpack-dev-server --mode development",
-  "build": "webpack --mode production"
+  }
 }

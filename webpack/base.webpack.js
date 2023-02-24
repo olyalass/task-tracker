@@ -4,13 +4,12 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   watch: true,
-  entry: "./src/index.ts",
+  entry: path.join(__dirname, "../src", "index.ts"),
   mode: "development",
   devtool: "inline-source-map",
   output: {
     filename: "bundle.js",
-    path: path.resolve(__dirname, 'build'),
-    publicPath: "/"
+    path: path.join(__dirname, '../build')
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js"]
@@ -22,7 +21,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, "src", "template.html")
+      template: path.join(__dirname, "../src", "template.html")
     }),
     new MiniCssExtractPlugin()
   ],
