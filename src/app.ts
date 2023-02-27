@@ -4,6 +4,7 @@ import { Note } from "./components/note";
 import { Form } from "./components/form";
 import { List } from "./components/list";
 import { DataObj, Filter } from "./types";
+import { getDefaultArray } from "./components/defaultNotes";
 
 export class App {
   appRoot: HTMLDivElement;
@@ -21,27 +22,7 @@ export class App {
     this.appRoot.append(appTitle, container);
     appTitle.textContent = "To-do List";
 
-    const date1 = new Date();
-    date1.setMonth(0, 1);
-    date1.setHours(11, 20);
-
-    const date2 = new Date();
-    date2.setMonth(0, 10);
-    date2.setHours(15, 5);
-
-    const notesArr: Array<DataObj> = [
-      {
-        note: "Create new tasks",
-        status:"Active", 
-        date: date2
-      }, 
-
-      {
-        note: "Create to-do list app",
-        status: "Done",
-        date: date1
-      }
-    ];
+    const notesArr = getDefaultArray();
 
     if (localStorage.getItem("notes") == undefined) {
       const notesJson = JSON.stringify(notesArr);
@@ -56,11 +37,10 @@ export class App {
     navigation.onFilterChange(this.handleFilterChange.bind(this));
 
     container.append(navigation.container, this.list.container, form.container);
-
   }
 
   handleNoteSubmit(noteData: DataObj) {
-    const newNote = new Note(noteData.note, noteData.date, noteData.status);
+    const newNote = new Note(noteData.note, noteData.date, noteData.status, noteData.id);
     this.list.addNote(newNote);
   }
 

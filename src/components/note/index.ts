@@ -8,8 +8,11 @@ export class Note {
   noteText: string;
   statusElem: HTMLParagraphElement;
   filter: Filter = "All";
+  id: number;
 
-  constructor(text: string, date: Date, status: string) {
+  constructor(text: string, date: Date, status: string, id: number) {
+    this.id = id;
+    
     this.container = document.createElement("div");
     this.container.classList.add("note");
     const leftContainer = document.createElement("div");
@@ -54,11 +57,12 @@ export class Note {
     dateElem.textContent = getPrettyDate(date);
 
     rightContainer.append(this.statusElem, dateElem);
+
   }
 
   private deleteNote() {
     const notesArr: Array<DataObj> = JSON.parse(localStorage.getItem("notes"));
-    const noteIndex = notesArr.findIndex(e => e.note === this.noteText);
+    const noteIndex = notesArr.findIndex(e => e.id === this.id);
     notesArr.splice(noteIndex, 1);
     const JsonArr = JSON.stringify(notesArr);
     localStorage.setItem("notes", JsonArr);
@@ -67,7 +71,7 @@ export class Note {
 
   private markNoteAsDone() {
     const notesArr: Array<DataObj> = JSON.parse(localStorage.getItem("notes"));
-    notesArr.find(e => e.note === this.noteText).status = "Done";
+    notesArr.find(e => e.id === this.id).status = "Done";
     this.statusElem.classList.remove("note__status_active");
     this.statusElem.classList.add("note__status_done");
     this.buttonDone.setAttribute("disabled", "true");

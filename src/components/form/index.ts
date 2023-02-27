@@ -86,8 +86,10 @@ export class Form {
     } else return false;
   }
 
-   private createNewNote(dataArray: Array<DataObj>) {
+  private createNewNote(dataArray: Array<DataObj>) {
+    const prevIndex = dataArray[dataArray.length-1].id;
     const noteObj = {
+      id: prevIndex + 1,
       note: this.noteText,
       status: "Active",
       date: new Date()
@@ -97,7 +99,7 @@ export class Form {
     return noteObj
    }
 
-   onFormSubmit(handler: SubmitHandler) {
+  onFormSubmit(handler: SubmitHandler) {
     this.handler = handler
    }
 }

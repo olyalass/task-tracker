@@ -1,6 +1,7 @@
 export type Filter = "Active" | "Done" | "All";
 
 export type DataObj = {
+  id: number,
   note: string,
   status: string,
   date: Date

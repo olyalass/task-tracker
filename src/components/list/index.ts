@@ -37,7 +37,7 @@ export class List {
     }
 
     this.notesArr.forEach(e => {
-      const note: Note = new Note(e.note, e.date, e.status);
+      const note: Note = new Note(e.note, e.date, e.status, e.id);
       this.container.appendChild(note.container);
     })
   }
