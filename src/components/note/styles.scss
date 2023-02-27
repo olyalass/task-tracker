@@ -20,7 +20,7 @@ $note-button-hover-color: rgb(210, 220, 252);
     width: 162px;
   }
 
-  &__button{
+  &__button {
     background-color: $note-button-color;
 
     &:hover {
@@ -42,7 +42,7 @@ $note-button-hover-color: rgb(210, 220, 252);
     margin-bottom: 0;
 
     &_active {
-      color:rgb(115, 185, 115)
+      color: rgb(115, 185, 115);
     }
 
     &_done {

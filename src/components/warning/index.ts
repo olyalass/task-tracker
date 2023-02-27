@@ -20,9 +20,9 @@ export class Warning {
     warningText1.textContent = "Sorry, you already have this task!";
     const warningText2 = document.createElement("p");
     warningText2.classList.add("warning__text");
-    warningText2.textContent = "You can't create it agian until it isn't done/deleted :(";
+    warningText2.textContent =
+      "You can't create it agian until it isn't done/deleted :(";
 
     this.container.append(this.button, warningText1, warningText2);
   }
-
 }

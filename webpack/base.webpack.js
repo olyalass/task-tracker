@@ -9,10 +9,10 @@ module.exports = {
   devtool: "inline-source-map",
   output: {
     filename: "bundle.js",
-    path: path.join(__dirname, '../build')
+    path: path.join(__dirname, "../build"),
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js"]
+    extensions: [".ts", ".tsx", ".js"],
   },
   devServer: {
     port: 8000,
@@ -21,9 +21,9 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, "../src", "template.html")
+      template: path.join(__dirname, "../src", "template.html"),
     }),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin(),
   ],
   module: {
     rules: [
@@ -33,16 +33,12 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader",
-          "sass-loader",
-        ],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
       {
         test: /\.([cm]?ts|tsx)$/,
-        loader: "ts-loader"
-      }
+        loader: "ts-loader",
+      },
     ],
   },
 };

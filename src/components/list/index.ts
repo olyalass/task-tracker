@@ -15,7 +15,9 @@ export class List {
   }
 
   private getFromLocalStorage() {
-    this.notesArr = JSON.parse(localStorage.getItem("notes")).map((obj: DataObj) => ({...obj, date: new Date(obj.date)}));
+    this.notesArr = JSON.parse(localStorage.getItem("notes")).map(
+      (obj: DataObj) => ({ ...obj, date: new Date(obj.date) })
+    );
   }
 
   renderNotes(statusFilter: string, isReversed: boolean) {
@@ -25,25 +27,26 @@ export class List {
     this.getFromLocalStorage();
 
     if (statusFilter === "Active") {
-      this.notesArr = this.notesArr.filter( e => e.status === "Active");
+      this.notesArr = this.notesArr.filter((e) => e.status === "Active");
     } else if (statusFilter === "Done") {
-      this.notesArr = this.notesArr.filter( e => e.status === "Done");
-    };
-
-    if (isReversed) {
-      this.notesArr.sort((note1, note2) => note1.date > note2.date ? 1 : -1);
-    } else {
-      this.notesArr.sort((note1, note2) => note1.date < note2.date ? 1 : -1);
+      this.notesArr = this.notesArr.filter((e) => e.status === "Done");
     }
 
-    this.notesArr.forEach(e => {
+    if (isReversed) {
+      this.notesArr.sort((note1, note2) => (note1.date > note2.date ? 1 : -1));
+    } else {
+      this.notesArr.sort((note1, note2) => (note1.date < note2.date ? 1 : -1));
+    }
+
+    this.notesArr.forEach((e) => {
       const note: Note = new Note(e.note, e.date, e.status, e.id);
       this.container.appendChild(note.container);
-    })
+    });
   }
 
   public addNote(note: Note) {
-    this.isReversed === true ? this.container.appendChild(note.container) : this.container.prepend(note.container);
+    this.isReversed === true
+      ? this.container.appendChild(note.container)
+      : this.container.prepend(note.container);
   }
-
 }

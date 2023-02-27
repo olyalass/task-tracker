@@ -1,6 +1,6 @@
 import { DataObj } from "types";
 
-export function getDefaultArray() : Array<DataObj> {
+export function getDefaultArray(): Array<DataObj> {
   const date1 = new Date();
   date1.setMonth(0, 1);
   date1.setHours(11, 20);
@@ -13,16 +13,16 @@ export function getDefaultArray() : Array<DataObj> {
     {
       id: 1,
       note: "Create new tasks",
-      status:"Active", 
-      date: date2
-    }, 
+      status: "Active",
+      date: date2,
+    },
 
     {
       id: 2,
       note: "Create to-do list app",
       status: "Done",
-      date: date1
-    }
+      date: date1,
+    },
   ];
 
   return notesArr;

@@ -12,7 +12,7 @@ export class Note {
 
   constructor(text: string, date: Date, status: string, id: number) {
     this.id = id;
-    
+
     this.container = document.createElement("div");
     this.container.classList.add("note");
     const leftContainer = document.createElement("div");
@@ -45,24 +45,23 @@ export class Note {
     this.statusElem.classList.add("note__status");
     this.statusElem.textContent = status;
     if (status === "Active") {
-      this.statusElem.classList.add("note__status_active")
-    }  else {
+      this.statusElem.classList.add("note__status_active");
+    } else {
       this.statusElem.classList.add("note__status_done");
       this.buttonDone.setAttribute("disabled", "true");
       this.buttonDelete.setAttribute("disabled", "true");
-    };
+    }
 
     const dateElem = document.createElement("p");
     dateElem.classList.add("note__date");
     dateElem.textContent = getPrettyDate(date);
 
     rightContainer.append(this.statusElem, dateElem);
-
   }
 
   private deleteNote() {
     const notesArr: Array<DataObj> = JSON.parse(localStorage.getItem("notes"));
-    const noteIndex = notesArr.findIndex(e => e.id === this.id);
+    const noteIndex = notesArr.findIndex((e) => e.id === this.id);
     notesArr.splice(noteIndex, 1);
     const JsonArr = JSON.stringify(notesArr);
     localStorage.setItem("notes", JsonArr);
@@ -71,7 +70,7 @@ export class Note {
 
   private markNoteAsDone() {
     const notesArr: Array<DataObj> = JSON.parse(localStorage.getItem("notes"));
-    notesArr.find(e => e.id === this.id).status = "Done";
+    notesArr.find((e) => e.id === this.id).status = "Done";
     this.statusElem.classList.remove("note__status_active");
     this.statusElem.classList.add("note__status_done");
     this.buttonDone.setAttribute("disabled", "true");
@@ -82,16 +81,28 @@ export class Note {
   }
 }
 
-function getPrettyDate (date: Date) {
+function getPrettyDate(date: Date) {
   const daysArr = ["Sun", "Mon", "Tue", "Wen", "Thu", "Fri", "Sat"];
-  const monthsArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const monthsArr = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
   const day: string = daysArr[date.getDay()];
   const dateNum: number = date.getDate();
   const month: string = monthsArr[date.getMonth()];
   const year: number = date.getFullYear();
   const hours = date.getHours();
   let mins = date.getMinutes().toString();
-  if (mins.length<2) mins = "0" + mins;
+  if (mins.length < 2) mins = "0" + mins;
   return `${day}   ${dateNum} ${month} ${year}   ${hours}:${mins}`;
-
 }

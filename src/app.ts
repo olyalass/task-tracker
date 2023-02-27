@@ -40,7 +40,12 @@ export class App {
   }
 
   handleNoteSubmit(noteData: DataObj) {
-    const newNote = new Note(noteData.note, noteData.date, noteData.status, noteData.id);
+    const newNote = new Note(
+      noteData.note,
+      noteData.date,
+      noteData.status,
+      noteData.id
+    );
     this.list.addNote(newNote);
   }
 
@@ -49,4 +54,3 @@ export class App {
     this.list.isReversed = isReversed;
   }
 }
-
