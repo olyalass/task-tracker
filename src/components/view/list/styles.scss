@@ -1,0 +1,10 @@
+.list {
+  width: 100%;
+  height: 100%;
+
+  &__wrap {
+    padding: 5px;
+    position: relative;
+    min-height: 300px;
+  }
+}

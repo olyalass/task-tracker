@@ -1,9 +1,6 @@
-@import "../../mixins.scss";
+@import "../../../mixins.scss";
 
-.board {
-  position: relative;
-  @include space-between-flex();
-  align-items: center;
+.form {
   width: 87.3%;
   border: 2px solid black;
   border-radius: 5px;
@@ -11,6 +8,12 @@
   padding-right: 80px;
   box-sizing: border-box;
   margin: 35px auto 15px;
+
+  &__wrap {
+    position: relative;
+    @include space-between-flex();
+    align-items: center;
+  }
 
   &__input {
     @include soft-black-border();

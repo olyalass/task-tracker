@@ -1,4 +1,4 @@
-@import "../../mixins.scss";
+@import "../../../mixins.scss";
 
 $nav-button-hover-color: rgb(210, 179, 239);
 $nav-button-color: rgb(250, 196, 205);
@@ -24,11 +24,10 @@ $nav-button-color: rgb(250, 196, 205);
   }
 
   &__reverse {
-    background-image: url(../../../assets/arrows.svg);
+    background-image: url(../../../../assets/arrows.svg);
     @include no-repeat-button-background();
-    width: 20px;
-    height: 20px;
-    margin: auto;
+    min-width: 28.4px;
+    height: 28.4px;
     rotate: 90deg;
   }
 }
