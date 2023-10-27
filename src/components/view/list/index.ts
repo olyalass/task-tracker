@@ -19,22 +19,24 @@ export default class List {
   }
 
   onStateUpdate(state: StateObj) {
-    const loadingState = state.loadingState;
-    if (
-      this.currentLength !== state.tasks.length ||
-      this.filter !== state.filter ||
-      this.isReversed !== state.isReversed
-    ) {
-      this.updateList(state);
-      this.spinner = null;
-    } else {
-      this.taskInstances.forEach((task) => task.onStateUpdate(state));
-    }
-    if (loadingState && !this.spinner) {
-      this.addSpinner();
-    }
-    if (this.spinner && !state.loadingState) {
-      this.removeSpinner();
+    if (state.tasks) {
+      const loadingState = state.loadingState;
+      if (
+        this.currentLength !== state.tasks.length ||
+        this.filter !== state.filter ||
+        this.isReversed !== state.isReversed
+      ) {
+        this.updateList(state);
+        this.spinner = null;
+      } else {
+        this.taskInstances.forEach((task) => task.onStateUpdate(state));
+      }
+      if (loadingState && !this.spinner) {
+        this.addSpinner();
+      }
+      if (this.spinner && !state.loadingState) {
+        this.removeSpinner();
+      }
     }
   }
 
