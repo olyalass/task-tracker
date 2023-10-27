@@ -65,6 +65,8 @@ export default class Form {
     if (state.tasks) {
       this.tasksArray = state.tasks.slice(0);
       this.createDOMElement();
+    } else {
+      this.tasksArray = [];
     }
   }
 
