@@ -1,1 +1,8 @@
 node_modules/
+assets/
+webpack/
+tsconfig.json
+src/
+package-lock.json
+package.json
+README.md
