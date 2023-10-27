@@ -7,12 +7,20 @@ export default class LocalApi implements ApiInterface {
   constructor() {
     const jsonTasks = localStorage.getItem("tasks");
     this.tasksArr = JSON.parse(jsonTasks);
-    if (this.tasksArr) {
-      this.tasksArr.map((obj: TaskDataObj) => ({
-        ...obj,
-        date: new Date(obj.date),
-      }));
+    if (!this.tasksArr || !this.tasksArr.length) {
+      this.tasksArr = [
+        {
+          id: 1,
+          note: "Create new task",
+          status: "active",
+          date: new Date(),
+        },
+      ];
     }
+    this.tasksArr.map((obj: TaskDataObj) => ({
+      ...obj,
+      date: new Date(obj.date),
+    }));
   }
 
   getAll() {
