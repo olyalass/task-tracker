@@ -62,8 +62,10 @@ export default class Form {
 
   onStateUpdate(state: StateObj) {
     this.clearHandlers();
-    this.tasksArray = state.tasks.slice(0);
-    this.createDOMElement();
+    if (state.tasks) {
+      this.tasksArray = state.tasks.slice(0);
+      this.createDOMElement();
+    }
   }
 
   getView() {
