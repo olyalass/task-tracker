@@ -1,4 +1,3 @@
-//import { App } from "./app";
 import "./styles.scss";
 import "./normalize.scss";
 import { createHtmlElement } from "./utils";
@@ -47,15 +46,3 @@ dispatch({
 api.getAll().then((tasks) => {
   dispatch({ type: "LOAD_INITIAL_TASKS", payload: tasks });
 });
-// .then(() => {
-//   setTimeout(() => {
-//     dispatch({
-//       type: "LOADING_STATE",
-//       payload: false,
-//     });
-//   }, 500);
-// });
-
-// [list, form].forEach((view) => {
-//   view.forcedConstructor(storage.getState() as StateObj);
-// });

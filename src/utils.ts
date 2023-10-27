@@ -1,5 +1,3 @@
-import { TaskDataObj } from "types";
-
 export function createHtmlElement<T = HTMLElement, D extends string = string>(
   type: string,
   cssClassArray: string[],
@@ -29,7 +27,7 @@ export function getPrettyDate(date: Date) {
     "Nov",
     "Dec",
   ];
-  if(typeof date === "string") {
+  if (typeof date === "string") {
     date = new Date(date);
   }
   const day: string = daysArr[date.getDay()];

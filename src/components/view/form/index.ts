@@ -22,10 +22,6 @@ export default class Form {
     this.dispatch = dispatch;
   }
 
-  // forcedConstructor(state: StateObj) {
-  //   this.createDOMElement(state.tasks);
-  // }
-
   createDOMElement() {
     this.element.innerHTML = "";
     this.wrap = createHtmlElement<HTMLDivElement>("div", ["form__wrap"]);
@@ -49,9 +45,6 @@ export default class Form {
       "Note should contain from 5 to 55 symbols"
     );
 
-    // input.addEventListener("input", () => {
-    //   this.inputValidation(input, counter, lengthWarning);
-    // });
     this.bindedHandleInputValidation = this.handleInputValidation.bind(this);
     this.bindedHandleCreateNote = this.handleCreateNote.bind(this);
 

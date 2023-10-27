@@ -5,29 +5,62 @@ export default class ServerApi implements ApiInterface {
   tasksArr: TaskDataObj[];
 
   constructor() {
-    const jsonTasks = localStorage.getItem("tasks");
-    this.tasksArr = JSON.parse(jsonTasks);
-    if (this.tasksArr) {
-      this.tasksArr.map((obj: TaskDataObj) => ({
+    this.getAll().then((res) =>
+      res.map((obj: TaskDataObj) => ({
         ...obj,
         date: new Date(obj.date),
-      }));
-    }
+      }))
+    );
   }
 
   getAll() {
-    return Promise.resolve(this.tasksArr);
+    async function getTasks() {
+      const response = await fetch("http://localhost:3000/tasks");
+      let tasksArr: TaskDataObj[] = [];
+      if (response.ok) {
+        let json = await response.text();
+        return (tasksArr = JSON.parse(json));
+      }
+    }
+    return getTasks();
   }
 
   add(newTask: TaskDataObj) {
-    return Promise.resolve(newTask);
+    async function addTask(newTask: TaskDataObj) {
+      await fetch("http://localhost:3000/tasks", {
+        method: "POST",
+        body: JSON.stringify(newTask),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+      console.log(newTask);
+      return newTask;
+    }
+    return addTask(newTask);
   }
 
   remove(id: number) {
-    return Promise.resolve(id);
+    async function deleteTask(id: number) {
+      await fetch("http://localhost:3000/tasks/" + id, {
+        method: "DELETE",
+      });
+      return id;
+    }
+    return deleteTask(id);
   }
 
   update(updatedTask: TaskDataObj) {
-    return Promise.resolve(updatedTask);
+    async function updateTask(updatedTask: TaskDataObj) {
+      await fetch("http://localhost:3000/tasks/" + updatedTask.id, {
+        method: "PUT",
+        body: JSON.stringify(updatedTask),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+      return updatedTask;
+    }
+    return updateTask(updatedTask);
   }
 }
