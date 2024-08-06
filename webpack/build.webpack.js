@@ -6,6 +6,6 @@ module.exports = {
   output: {
     filename: "bundle.js",
     path: path.join(__dirname, "../build"),
-    publicPath: "/To-do-list/build/",
+    publicPath: "/task-tracker/build/",
   },
 };
