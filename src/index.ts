@@ -21,7 +21,7 @@ const body = document.querySelector("body");
 const appRoot = createHtmlElement("div", ["app"]);
 body.append(appRoot);
 
-const appTitle = createHtmlElement("h1", ["app__title"], "To-do List");
+const appTitle = createHtmlElement("h1", ["app__title"], "TaskTracker 1.0");
 const container = createHtmlElement("div", ["app__container"]);
 
 appRoot.append(appTitle, container);
